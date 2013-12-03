@@ -72,4 +72,52 @@ public class Game
         // Compare the player's top card to the computer's top card and return the result.
         return playerCentralPile.peekAtTop().compareTo(computerCentralPile.peekAtTop());
     }
+    /**
+     * Gets the state of the game.
+     * @return A negative number if the computer won, 0 if the game is still going on, a positive number if the player won.
+     */
+    public int getGameState()
+    {
+        if (computerHand.isEmpty())
+            return 1;
+        if (playerHand.isEmpty())
+            return -1;
+        return 0;
+    }
+    /**
+     * Processes a turn. Should be called directly after flip().
+     */
+    public void processTurn()
+    {
+        if (getWinState() == 0)
+        {
+            //TODO: Implement war functionality.
+        }
+        else if (getWinState() > 0)
+        {
+            // The player won.
+            // Take both piles and add them to the bottom of the player's hand.
+            while (!playerCentralPile.isEmpty())
+            {
+                playerHand.addToEnd(playerCentralPile.takeFromTop());
+            }
+            while (!computerCentralPile.isEmpty())
+            {
+                playerHand.addToEnd(computerCentralPile.takeFromTop());
+            }
+        }
+        else // getWinState() can only be < 0
+        {
+            // The computer won.
+            // Take both piles and add them to the bottom of the computer's hand.
+            while (!playerCentralPile.isEmpty())
+            {
+                computerHand.addToEnd(playerCentralPile.takeFromTop());
+            }
+            while (!computerCentralPile.isEmpty())
+            {
+                computerHand.addToEnd(computerCentralPile.takeFromTop());
+            }
+        }
+    }
 }
