@@ -151,10 +151,12 @@ public class Game
             // Take both piles and add them to the bottom of the player's hand.
             while (!playerCentralPile.isEmpty())
             {
+            	System.out.println("Putting " + playerCentralPile.peekAtTop() + " on the bottom of player's deck.");
                 playerHand.addToEnd(playerCentralPile.takeFromTop());
             }
             while (!computerCentralPile.isEmpty())
             {
+            	System.out.println("Putting " + computerCentralPile.peekAtTop() + " on the bottom of player's deck.");
                 playerHand.addToEnd(computerCentralPile.takeFromTop());
             }
             return 1;
@@ -165,10 +167,12 @@ public class Game
             // Take both piles and add them to the bottom of the computer's hand.
             while (!playerCentralPile.isEmpty())
             {
+            	System.out.println("Putting " + playerCentralPile.peekAtTop() + " on the bottom of computer's deck.");
                 computerHand.addToEnd(playerCentralPile.takeFromTop());
             }
             while (!computerCentralPile.isEmpty())
             {
+            	System.out.println("Putting " + computerCentralPile.peekAtTop() + " on the bottom of computer's deck.");
                 computerHand.addToEnd(computerCentralPile.takeFromTop());
             }
             return -1;
@@ -217,21 +221,12 @@ public class Game
             playerTopCard = g.playerTopCard();
             computerTopCard = g.computerTopCard();
 
-            // Display cards.
-            //if (playerTopCard == null)
-                //System.out.println("No card up for player.");
-            //else
-                //System.out.println("Player's card: " + playerTopCard);
-            //if (computerTopCard == null)
-                //System.out.println("No card up for computer.");
-            //else
-                //System.out.println("Computer's card: " + computerTopCard);
             g.playerHandSize();
             System.out.println("You have " + g.playerHandSize() + " cards.\nThe computer has " + g.computerHandSize());
 
 
             System.out.println("Press enter to flip a card.");
-            //sc.nextLine(); // Wait for user to press enter.
+            sc.nextLine(); // Wait for user to press enter.
             g.flip();
             System.out.println("You flipped " + g.playerTopCard() + ".\nThe computer flipped: " + g.computerTopCard());
             
@@ -250,7 +245,7 @@ public class Game
             else // turnresult == 0 is only possible case
             {
                 System.out.println("******\n*WAR!*\n******\nPress enter to begin.");
-                //sc.nextLine(); // Wait for user to press enter.
+                sc.nextLine(); // Wait for user to press enter.
                 while (!g.war()) // Continue having wars until a winner is decided.
                 {
                     System.out.println("You flipped a card face down.\nThe computer flipped a card face down.");
@@ -283,7 +278,7 @@ public class Game
                         System.out.println("You win the war!");
                     }
                     System.out.println("Press enter to continue.");
-                    //sc.nextLine();
+                    sc.nextLine();
                 }
             }
         }
