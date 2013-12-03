@@ -4,8 +4,9 @@
  * Game - A class to hold game logic.
  */
 
-package cs110finalproject;
+package CS110FinalProject;
 
+import java.io.ObjectInputStream.GetField;
 import java.util.Scanner;
 
 /**
@@ -19,6 +20,23 @@ public class Game
 
     private CentralPile playerCentralPile;
     private CentralPile computerCentralPile;
+    
+    private String statusMessage;
+    
+    /**
+     * Used for keeping track of the game's state when using the step() method
+     */
+    public enum StepGameState
+    {
+        normal,
+        war,
+        cardJustPlayed,
+        gameOver,
+    }
+    /**
+     * An instance of StepGameState used for keeping track of the game's sate when using the step() method.
+     */
+    private StepGameState stepGameState;
 
     public Game()
     {
@@ -284,4 +302,81 @@ public class Game
         }
         sc.close();
     }
+    /**
+     * Initializes a stepped game. Called automatically the first time step() is called.
+     */
+    private void initializeSteppedGame()
+    {
+    	this.stepGameState = StepGameState.normal;
+    	this.statusMessage = "";
+    	this.deal();
+    }
+    /**
+     * Steps a game. Updates the values returned by Game.getStatusMessage() and Game.getSteppedGameState().
+     */
+	public void step()
+	{
+		if (this.statusMessage == null)
+		{
+			initializeSteppedGame(); // This was the first time that this was called.
+
+		}
+		// If the game is still going on...
+		if (this.getGameState() == 0)
+		{
+			switch (this.stepGameState)
+			{
+				case normal:
+					this.flip();
+					this.stepGameState = StepGameState.cardJustPlayed;
+					this.statusMessage = "You flipped: " + this.playerTopCard() + ". The computer flipped: " + this.computerTopCard();
+					break;
+				case cardJustPlayed:
+					int result = this.processTurn();
+					if (result == 0)
+					{
+						this.statusMessage = "WAR!";
+						this.stepGameState = StepGameState.war;
+					}
+					else if (result > 0)
+					{
+						// The player won.
+						this.stepGameState = StepGameState.normal;
+						this.statusMessage = "You win the round!";
+					}
+					else // Only possible case is result < 0
+					{
+						// The computer won.
+						this.stepGameState = StepGameState.normal;
+						this.statusMessage = "The computer wins the round.";
+					}
+					break;
+				case war:
+					flip();
+					if (this.getGameState() != 0)
+					{
+						// The game is over.
+						this.stepGameState = StepGameState.gameOver;
+						return;
+					}
+					flip();
+					this.stepGameState = StepGameState.cardJustPlayed;
+					this.statusMessage = "You flipped a face down card and " + playerTopCard() + ". The computer flipped a card face down and " + computerTopCard();
+					
+			
+			}
+		}
+	}
+	public String getStatusMessage()
+	{
+		return this.statusMessage;
+	}
+	/**
+	 * Gets the current state of the stepped game.
+	 * @return an enum representing the state of the game (Game.StepGameState). Can be normal, cardJustPlayed, gameOver, or war.
+	 */
+	public StepGameState getStepGameState()
+	{
+		return this.stepGameState;
+	}
 }
