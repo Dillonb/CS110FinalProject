@@ -52,6 +52,21 @@ public class Game
         }
     }
 
+    public Card playerTopCard()
+    {
+        if (playerCentralPile.isEmpty())
+            return null;
+        else
+            return playerCentralPile.peekAtTop();
+    }
+    public Card computerTopCard()
+    {
+        if (computerCentralPile.isEmpty())
+            return null;
+        else
+            return computerCentralPile.peekAtTop();
+    }
+
     /**
      * Flip the top card from both the player and the computer's deck.
      * This is the first part of a new turn, or part of a war.
