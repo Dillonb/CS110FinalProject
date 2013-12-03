@@ -155,4 +155,29 @@ public class Game
             return -1;
         }
     }
+
+    /**
+     * Processes a war.
+     * @return true if the war was successful and decided a winner, false if the war needs to be done again.
+     */
+    public boolean war()
+    {
+        // Flip the first card "face down"
+        flip();
+        // If someone is out of cards, end the war.
+        if (getGameState() == 0)
+        {
+            return true;
+        }
+        // Otherwise, flip again, this time "face up."
+        flip();
+        if (getWinState() == 0) // If a war is necessary, this war did not decide a victor.
+        {
+            if (getGameState() == 0) // If the game is also not over, it's time for another war.
+                return false;
+            else
+                return true; // The war is over, did not decide a winner and one player is out of cards. Someone won.
+        }
+        return true; // If the winstate is anything but 0, someone won the war.
+    }
 }
