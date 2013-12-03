@@ -65,7 +65,7 @@ public class Game
 
     /**
      * Gets the state of the game based on the current top two cards.
-     * @ return a negative number if the computer won, 0 if a war needs to be played, a positive number if the player won.
+     * @return a negative number if the computer won, 0 if a war needs to be played, a positive number if the player won.
      */
     public int getWinState()
     {
@@ -85,13 +85,15 @@ public class Game
         return 0;
     }
     /**
-     * Processes a turn. Should be called directly after flip().
+     * Processes a turn. Should be called directly after flip(). Does NOT handle wars.
+     * To handle wars, check if this method returned 0 and call the method war().
+     * @return a negative number if the computer won, 0 if a war needs to be played, a positive number if the player won.
      */
-    public void processTurn()
+    public int processTurn()
     {
         if (getWinState() == 0)
         {
-            //TODO: Implement war functionality.
+            return 0; // Game implementation will handle wars.
         }
         else if (getWinState() > 0)
         {
@@ -105,6 +107,7 @@ public class Game
             {
                 playerHand.addToEnd(computerCentralPile.takeFromTop());
             }
+            return 1;
         }
         else // getWinState() can only be < 0
         {
@@ -118,6 +121,7 @@ public class Game
             {
                 computerHand.addToEnd(computerCentralPile.takeFromTop());
             }
+            return -1;
         }
     }
 }
