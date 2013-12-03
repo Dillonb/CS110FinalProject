@@ -59,72 +59,7 @@ public class Card
      */
     public String toString()
     {
-        String suit, value;
-
-        // Get string value of suit
-        switch (this.suit)
-        {
-            case Clubs:
-                suit = "Clubs";
-                break;
-            case Spades:
-                suit = "Spades";
-                break;
-            case Diamonds:
-                suit = "Diamonds";
-                break;
-            case Hearts:
-                suit = "Hearts";
-                break;
-            default:
-                suit = "N/A";
-                break;
-        }
-
-        // Get string value of card value
-        switch (this.value)
-        {
-            case Two:
-                value = "Two";
-                break;
-            case Three:
-                value = "Three";
-                break;
-            case Four:
-                value = "Four";
-                break;
-            case Five:
-                value = "Five";
-                break;
-            case Six:
-                value = "Six";
-                break;
-            case Seven:
-                value = "Seven";
-                break;
-            case Eight:
-                value = "Eight";
-                break;
-            case Nine:
-                value = "Nine";
-                break;
-            case Ten:
-                value = "Ten";
-                break;
-            case Jack:
-                value = "Jack";
-                break;
-            case Queen:
-                value = "Queen";
-                break;
-            case King:
-                value = "King";
-                break;
-            default:
-                value = "N/A";
-        }
-
         // Return a human readable representation of the card.
-        return value + " of " + suit;
+        return this.value + " of " + this.suit;
     }
 }
