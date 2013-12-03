@@ -69,7 +69,7 @@ public class Game
      */
     public int getWinState()
     {
-        // Compare the player's top card to the computer's top card and return it.
+        // Compare the player's top card to the computer's top card and return the result.
         return playerCentralPile.peekAtTop().compareTo(computerCentralPile.peekAtTop());
     }
 }
