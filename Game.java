@@ -6,6 +6,8 @@
 
 package cs110finalproject;
 
+import java.util.Scanner;
+
 /**
  * Represents a game.
  * Can be ran (has a main method, a CLI interface to the game) but also can be used to implement another interface, such as a GUI.
@@ -79,6 +81,23 @@ public class Game
             return null;
         else
             return computerCentralPile.peekAtTop();
+    }
+
+    /**
+     * Gets the size of the player's hand.
+     * @return The size of the player's hand.
+     */
+    public int playerHandSize()
+    {
+        return this.playerHand.size();
+    }
+    /**
+     * Gets the size of the computer's hand.
+     * @return The size of the computer's hand.
+     */
+    public int computerHandSize()
+    {
+        return this.computerHand.size();
     }
 
     /**
@@ -165,7 +184,7 @@ public class Game
         // Flip the first card "face down"
         flip();
         // If someone is out of cards, end the war.
-        if (getGameState() == 0)
+        if (getGameState() != 0)
         {
             return true;
         }
@@ -178,6 +197,96 @@ public class Game
             else
                 return true; // The war is over, did not decide a winner and one player is out of cards. Someone won.
         }
-        return true; // If the winstate is anything but 0, someone won the war.
+        return true; // If the winstate is anything but 0, someone won the war, but both players could still have cards.
+    }
+
+    // CLI mode war game.
+    public static void main(String[] args)
+    {
+        Game g = new Game();
+        Scanner sc = new Scanner(System.in);
+        int turnResult;
+
+        Card playerTopCard, computerTopCard;
+
+        System.out.println("Dealing...");
+        g.deal(); // Begin the game by dealing.
+        System.out.println("Finished dealing.");
+        while (g.getGameState() == 0) // Loop while game is still going on.
+        {
+            playerTopCard = g.playerTopCard();
+            computerTopCard = g.computerTopCard();
+
+            // Display cards.
+            //if (playerTopCard == null)
+                //System.out.println("No card up for player.");
+            //else
+                //System.out.println("Player's card: " + playerTopCard);
+            //if (computerTopCard == null)
+                //System.out.println("No card up for computer.");
+            //else
+                //System.out.println("Computer's card: " + computerTopCard);
+            g.playerHandSize();
+            System.out.println("You have " + g.playerHandSize() + " cards.\nThe computer has " + g.computerHandSize());
+
+
+            System.out.println("Press enter to flip a card.");
+            //sc.nextLine(); // Wait for user to press enter.
+            g.flip();
+            System.out.println("You flipped " + g.playerTopCard() + ".\nThe computer flipped: " + g.computerTopCard());
+            
+            turnResult = g.processTurn();
+
+            if (turnResult < 0)
+            {
+                // Computer won
+                System.out.println("The computer wins the round.");
+            }
+            else if (turnResult > 0)
+            {
+                // Player wins
+                System.out.println("You win the round!");
+            }
+            else // turnresult == 0 is only possible case
+            {
+                System.out.println("******\n*WAR!*\n******\nPress enter to begin.");
+                //sc.nextLine(); // Wait for user to press enter.
+                while (!g.war()) // Continue having wars until a winner is decided.
+                {
+                    System.out.println("You flipped a card face down.\nThe computer flipped a card face down.");
+                    System.out.println("You flipped: " + g.playerTopCard() + "\nThe computer flipped " + g.computerTopCard());
+                    System.out.println("There was no winner! Press enter to continue the war.");
+                    sc.nextLine();
+                }
+                System.out.println("You flipped a card face down.\nThe computer flipped a card face down.");
+                System.out.println("You flipped: " + g.playerTopCard() + "\nThe computer flipped " + g.computerTopCard());
+                // The war was decided. Determine what kind of victory it was.
+                if (g.computerHandSize() == 0)
+                {
+                    // It was a case of running out of cards.
+                    System.out.println("The computer ran out of cards!");
+                }
+                else if (g.playerHandSize() == 0)
+                {
+                    // Same, but the player ran out of cards.
+                    System.out.println("You ran out of cards.");
+                }
+                else // The war ended without ending the game.
+                {
+                    turnResult = g.processTurn();
+                    if (turnResult < 0)
+                    {
+                        System.out.println("The computer wins the war.");
+                    }
+                    else // turnResult > 0 (turnResult cannot be 0 here because the war ended)
+                    {
+                        System.out.println("You win the war!");
+                    }
+                    System.out.println("Press enter to continue.");
+                    //sc.nextLine();
+                }
+            }
+        }
+        sc.close();
     }
 }
