@@ -31,6 +31,8 @@ public class Game
      */
     public void deal()
     {
+        // Dealing means the start of a new game.
+        reset();
         // Create a temporary deck.
         Deck deck = new Deck();
         // A tracking variable to remember who we are dealing to.
@@ -49,4 +51,16 @@ public class Game
             onPlayerHand = !onPlayerHand;
         }
     }
+
+    /**
+     * Flip the top card from both the player and the computer's deck.
+     * This is the first part of a new turn, or part of a war.
+     */
+    public void flip()
+    {
+        // Draws the top card from each player's hand and adds it to their central pile.
+        playerCentralPile.addToTop(playerHand.draw());
+        computerCentralPile.addToTop(computerHand.draw());
+    }
+
 }
