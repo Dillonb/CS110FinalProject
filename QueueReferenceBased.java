@@ -63,7 +63,7 @@ class QueueReferenceBased implements QueueInterface
         Node n = first;
         while (n != null)
         {
-            n.getNext();
+            n = n.getNext();
             count++;
         }
         return count;
