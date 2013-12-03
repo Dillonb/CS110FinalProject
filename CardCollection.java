@@ -104,4 +104,13 @@ public abstract class CardCollection
     {
         return this.cards.isEmpty();
     }
+
+    /**
+     * Gets the size of the card collection.
+     * @return The size of the card collection.
+     */
+    public int size()
+    {
+        return this.cards.size();
+    }
 }
