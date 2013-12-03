@@ -1,3 +1,9 @@
+/**
+ * Dillon Beliveau: CS110
+ * 12/2/13
+ * Game - A class to hold game logic.
+ */
+
 package cs110finalproject;
 
 /**
@@ -92,6 +98,8 @@ public class Game
      */
     public int getWinState()
     {
+        if (playerTopCard() == null || computerTopCard() == null)
+            throw new NoCardsException("Tried to check the win state when there were no cards on the table.");
         // Compare the player's top card to the computer's top card and return the result.
         return playerCentralPile.peekAtTop().compareTo(computerCentralPile.peekAtTop());
     }
