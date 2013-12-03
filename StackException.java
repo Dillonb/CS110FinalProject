@@ -6,7 +6,7 @@
 
 package cs110finalproject;
 
-class StackException extends java.lang.Exception
+class StackException extends java.lang.RuntimeException
 {
     public StackException(String message)
     {
