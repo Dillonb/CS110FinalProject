@@ -4,7 +4,7 @@
  * QueueInterface - Defines an interface for Queues
  */
 
-package cs110finalproject;
+package CS110FinalProject;
 
 public interface QueueInterface
 {

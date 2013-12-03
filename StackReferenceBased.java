@@ -4,7 +4,7 @@
  * StackReferenceBased - A linked list implementation of a stack.
  */
 
-package cs110finalproject;
+package CS110FinalProject;
 
 class StackReferenceBased implements StackInterface
 {

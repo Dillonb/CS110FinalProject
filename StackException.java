@@ -4,7 +4,7 @@
  * StackException - An exception for stacks
  */
 
-package cs110finalproject;
+package CS110FinalProject;
 
 class StackException extends java.lang.RuntimeException
 {

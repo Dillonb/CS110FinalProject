@@ -4,7 +4,7 @@
  * QueueReferenceBased - A linked list implementation of a queue 
  */
 
-package cs110finalproject;
+package CS110FinalProject;
 
 class QueueReferenceBased implements QueueInterface
 {

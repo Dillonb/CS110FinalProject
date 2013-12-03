@@ -4,7 +4,7 @@
  * NoCardsException - Thrown when there are no cards on the table and an operation requiring them is done.
  */
 
-package cs110finalproject;
+package CS110FinalProject;
 
 class NoCardsException extends java.lang.RuntimeException
 {

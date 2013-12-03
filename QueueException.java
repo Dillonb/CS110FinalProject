@@ -4,7 +4,7 @@
  * QueueException - An exception for Queues
  */
 
-package cs110finalproject;
+package CS110FinalProject;
 
 class QueueException extends java.lang.RuntimeException
 {

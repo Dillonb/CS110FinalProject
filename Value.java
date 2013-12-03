@@ -1,4 +1,4 @@
-package cs110finalproject;
+package CS110FinalProject;
 
 /**
  * The value of a card, Two to Ace.

@@ -1,4 +1,4 @@
-package cs110finalproject;
+package CS110FinalProject;
 
 /**
  * When instantiated, is a fresh, shuffled deck.

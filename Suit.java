@@ -1,4 +1,4 @@
-package cs110finalproject;
+package CS110FinalProject;
 
 /**
  * A card's suit. Clubs through Hearts.

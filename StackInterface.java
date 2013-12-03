@@ -4,7 +4,7 @@
  * StackInterface - Defines an interface for Stack data structures.
  */
 
-package cs110finalproject;
+package CS110FinalProject;
 
 public interface StackInterface
 {

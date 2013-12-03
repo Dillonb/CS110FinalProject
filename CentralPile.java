@@ -1,4 +1,4 @@
-package cs110finalproject;
+package CS110FinalProject;
 
 /**
  * Represents a central pile of cards. Is face up and uses a stack instead of a queue.

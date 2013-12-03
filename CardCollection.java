@@ -1,4 +1,4 @@
-package cs110finalproject;
+package CS110FinalProject;
 
 import java.util.ArrayList;
 import java.util.Collections;
