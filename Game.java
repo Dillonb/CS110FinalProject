@@ -52,6 +52,10 @@ public class Game
         }
     }
 
+    /**
+     * Peeks at the player's top card.
+     * @return null if there is no top card, otherwise returns the top card on the player's pile.
+     */
     public Card playerTopCard()
     {
         if (playerCentralPile.isEmpty())
@@ -59,6 +63,10 @@ public class Game
         else
             return playerCentralPile.peekAtTop();
     }
+    /**
+     * Peeks at the computer's top card.
+     * @return null if there is no top card, otherwise returns the top card on the computer's pile.
+     */
     public Card computerTopCard()
     {
         if (computerCentralPile.isEmpty())
