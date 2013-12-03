@@ -63,4 +63,13 @@ public class Game
         computerCentralPile.addToTop(computerHand.draw());
     }
 
+    /**
+     * Gets the state of the game based on the current top two cards.
+     * @ return a negative number if the computer won, 0 if a war needs to be played, a positive number if the player won.
+     */
+    public int getWinState()
+    {
+        // Compare the player's top card to the computer's top card and return it.
+        return playerCentralPile.peekAtTop().compareTo(computerCentralPile.peekAtTop());
+    }
 }
