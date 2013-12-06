@@ -1,3 +1,8 @@
+/**
+ * Dillon Beliveau: CS110
+ * 12/2/13
+ * CardCollection - An abstract superclass representing a collection of cards.
+ */
 package CS110FinalProject;
 
 import java.util.ArrayList;

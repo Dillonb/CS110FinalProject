@@ -1,3 +1,9 @@
+/**
+ * Dillon Beliveau: CS110
+ * 12/2/13
+ * Card - A class to represent a card.
+ */
+
 package CS110FinalProject;
 
 /**

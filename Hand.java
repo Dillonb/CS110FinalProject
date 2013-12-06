@@ -1,3 +1,8 @@
+/**
+ * Dillon Beliveau: CS110
+ * 12/2/13
+ * Hand - A class to represent a hand.
+ */
 package CS110FinalProject;
 
 /**

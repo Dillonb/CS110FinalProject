@@ -1,3 +1,8 @@
+/**
+ * Dillon Beliveau: CS110
+ * 12/2/13
+ * Value - An enum to represent a card's value.
+ */
 package CS110FinalProject;
 
 /**

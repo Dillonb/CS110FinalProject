@@ -1,3 +1,8 @@
+/**
+ * Dillon Beliveau: CS110
+ * 12/2/13
+ * Suit - An enum to represent a card's suit.
+ */
 package CS110FinalProject;
 
 /**

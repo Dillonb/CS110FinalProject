@@ -1,3 +1,8 @@
+/**
+ * Dillon Beliveau: CS110
+ * 12/2/13
+ * WarGUI - The default GUI to run the game.
+ */
 package CS110FinalProject;
 
 import java.awt.GridLayout;

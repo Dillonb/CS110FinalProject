@@ -1,3 +1,8 @@
+/**
+ * Dillon Beliveau: CS110
+ * 12/2/13
+ * CentralPile - A class to represent a pile of cards in the center of the table. (Face up.)
+ */
 package CS110FinalProject;
 
 /**
