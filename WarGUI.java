@@ -79,7 +79,7 @@ public class WarGUI extends JFrame
         topPanel.add(computerHand);
         bottomPanel = new JPanel(new GridLayout(2,1));
         statusMessage = new JLabel("Welcome to WAR!");
-        nextStepButton = new JButton("Continue Game");
+        nextStepButton = new JButton("Begin Game");
         nextStepButton.addActionListener(new ButtonListener());
         bottomPanel.add(statusMessage);
         bottomPanel.add(nextStepButton);
@@ -141,16 +141,44 @@ public class WarGUI extends JFrame
     			+ "<br>Your hand size: " + g.playerHandSize()
     			+ "<br>Computer's hand size: " + g.computerHandSize()
     			+ "</html>";
-    	statusMessage.setText(newMessage);
+    	try
+    	{
+    		statusMessage.setText(newMessage);
+    
+    	}
+    	catch (NullPointerException ex)
+    	{
+    		return; //Work around a Java bug...
+    	}
     }
     private class ButtonListener implements ActionListener
     {
         // Called when the button is pushed.
         public void actionPerformed(ActionEvent e)
         {
+        	nextStepButton.setText("Continue Game");
             g.step();
             updateCardImages();
             updateStatusMessage();
+            
+            // If the game is over
+            if (g.getGameState() != 0)
+            {
+            	// Figure out who won
+	            if (g.getGameState() < 0)
+	            {
+	            	javax.swing.JOptionPane.showMessageDialog(null, "The computer won.");
+	            }
+	            else //g.getGameState() > 0
+	            {
+	            	javax.swing.JOptionPane.showMessageDialog(null, "You win!");
+	            }
+	            // And finish up.
+	            updateStatusMessage(); // To get the "You win!"/"Computer Wins." message
+	            nextStepButton.setEnabled(false); // Disable the continue button.
+            }
+            
+
         }
     }
     public static void main(String[] args)

@@ -169,12 +169,10 @@ public class Game
             // Take both piles and add them to the bottom of the player's hand.
             while (!playerCentralPile.isEmpty())
             {
-            	System.out.println("Putting " + playerCentralPile.peekAtTop() + " on the bottom of player's deck.");
                 playerHand.addToEnd(playerCentralPile.takeFromTop());
             }
             while (!computerCentralPile.isEmpty())
             {
-            	System.out.println("Putting " + computerCentralPile.peekAtTop() + " on the bottom of player's deck.");
                 playerHand.addToEnd(computerCentralPile.takeFromTop());
             }
             return 1;
@@ -185,12 +183,10 @@ public class Game
             // Take both piles and add them to the bottom of the computer's hand.
             while (!playerCentralPile.isEmpty())
             {
-            	System.out.println("Putting " + playerCentralPile.peekAtTop() + " on the bottom of computer's deck.");
                 computerHand.addToEnd(playerCentralPile.takeFromTop());
             }
             while (!computerCentralPile.isEmpty())
             {
-            	System.out.println("Putting " + computerCentralPile.peekAtTop() + " on the bottom of computer's deck.");
                 computerHand.addToEnd(computerCentralPile.takeFromTop());
             }
             return -1;
@@ -313,59 +309,73 @@ public class Game
     }
     /**
      * Steps a game. Updates the values returned by Game.getStatusMessage() and Game.getSteppedGameState().
+     * @return True if the game is over, false if the game is still going on.
      */
-	public void step()
+	public boolean step()
 	{
 		if (this.statusMessage == null)
 		{
 			initializeSteppedGame(); // This was the first time that this was called.
 
 		}
-		// If the game is still going on...
-		if (this.getGameState() == 0)
+		if (getGameState() != 0) // If the game is over...
 		{
-			switch (this.stepGameState)
+			if (getGameState() > 0)
 			{
-				case normal:
-					this.flip();
-					this.stepGameState = StepGameState.cardJustPlayed;
-					this.statusMessage = "You flipped: " + this.playerTopCard() + ". The computer flipped: " + this.computerTopCard();
-					break;
-				case cardJustPlayed:
-					int result = this.processTurn();
-					if (result == 0)
-					{
-						this.statusMessage = "WAR!";
-						this.stepGameState = StepGameState.war;
-					}
-					else if (result > 0)
-					{
-						// The player won.
-						this.stepGameState = StepGameState.normal;
-						this.statusMessage = "You win the round!";
-					}
-					else // Only possible case is result < 0
-					{
-						// The computer won.
-						this.stepGameState = StepGameState.normal;
-						this.statusMessage = "The computer wins the round.";
-					}
-					break;
-				case war:
-					flip();
-					if (this.getGameState() != 0)
-					{
-						// The game is over.
-						this.stepGameState = StepGameState.gameOver;
-						return;
-					}
-					flip();
-					this.stepGameState = StepGameState.cardJustPlayed;
-					this.statusMessage = "You flipped a face down card and " + playerTopCard() + ". The computer flipped a card face down and " + computerTopCard();
-					
-			
+				this.statusMessage = "You win the game!";
 			}
+			else
+			{
+				this.statusMessage = "The computer wins the game.";
+			}
+			return true;
 		}
+		switch (this.stepGameState)
+		{
+			case normal:
+				this.flip();
+				this.stepGameState = StepGameState.cardJustPlayed;
+				this.statusMessage = "You flipped: " + this.playerTopCard() + ". The computer flipped: " + this.computerTopCard();
+				return false;
+			case cardJustPlayed:
+				int result = this.processTurn();
+				if (result == 0)
+				{
+					this.statusMessage = "WAR!";
+					this.stepGameState = StepGameState.war;
+				}
+				else if (result > 0)
+				{
+					// The player won.
+					this.stepGameState = StepGameState.normal;
+					this.statusMessage = "You win the round!";
+				}
+				else // Only possible case is result < 0
+				{
+					// The computer won.
+					this.stepGameState = StepGameState.normal;
+					this.statusMessage = "The computer wins the round.";
+				}
+				return false;
+			case war:
+				flip();
+				// Check to see if either player is out of cards because of that flip.
+				if (this.getGameState() != 0)
+				{
+					// The game is over.
+					this.stepGameState = StepGameState.gameOver;
+					return false; // Need to step once more to get the 
+				}
+				flip();
+				this.stepGameState = StepGameState.cardJustPlayed;
+				this.statusMessage = "You flipped a face down card and " + playerTopCard() + ". The computer flipped a card face down and " + computerTopCard();
+				return false;
+			case gameOver:
+				return false;
+			default:
+				return false; //Should never happen...
+		}
+
 	}
 	public String getStatusMessage()
 	{
