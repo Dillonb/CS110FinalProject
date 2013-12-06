@@ -14,6 +14,9 @@ public abstract class CardCollection
 
     private boolean faceUp;
 
+    /**
+     * Default constructor. Creates an empty, face down card collection.
+     */
     public CardCollection()
     {
         this.cards = new QueueReferenceBased();
@@ -22,6 +25,7 @@ public abstract class CardCollection
 
     /**
      * An alternative constructor that allows the deck to be set face up.
+     * @param faceUp Whether or not the deck is face up (top can be peeked at)
      */
     public CardCollection(boolean faceUp)
     {
@@ -59,6 +63,7 @@ public abstract class CardCollection
 
     /**
      * Causes the CardCollection to become a shuffled deck.
+     * First clears the collection and then fills it with new data.
      */
     public void becomeShuffledDeck()
     {

@@ -28,7 +28,7 @@ public class Node
     next = nextNode;
   } 
   /** set data field (item) of Node
-      @param newItem, to set item field to
+      @param newItem to set item field to
   */
   public void setItem(Object newItem) {
     item = newItem;
@@ -42,7 +42,7 @@ public class Node
   } 
 
   /** set next field  of Node
-      @param nextNode, to set next field to
+      @param nextNode to set next field to
   */
   public void setNext(Node nextNode) {
     next = nextNode;

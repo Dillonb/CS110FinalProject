@@ -3,7 +3,7 @@ package CS110FinalProject;
 /**
  * Represents a central pile of cards. Is face up and uses a stack instead of a queue.
  */
-class CentralPile 
+public class CentralPile 
 {
     private StackReferenceBased cards;
     public CentralPile()

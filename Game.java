@@ -28,9 +28,21 @@ public class Game
      */
     public enum StepGameState
     {
+    	/**
+    	 * The game is in a normal state, in between turns.
+    	 */
         normal,
+        /**
+         * A war is about to occur.
+         */
         war,
+        /**
+         * A card was just played.
+         */
         cardJustPlayed,
+        /**
+         * The game is over.
+         */
         gameOver,
     }
     /**
@@ -38,11 +50,16 @@ public class Game
      */
     private StepGameState stepGameState;
 
+    /**
+     * The default constructor. Creates a game ready to be played.
+     */
     public Game()
     {
         reset();
     }
-    // Resets the game.
+    /**
+     * Resets the game back to an initial state.
+     */
     public void reset()
     {
 
@@ -218,7 +235,9 @@ public class Game
         return true; // If the winstate is anything but 0, someone won the war, but both players could still have cards.
     }
 
-    // CLI mode war game.
+    /**
+     * A main method containing a CLI version of war, ready to be run.
+     */
     public static void main(String[] args)
     {
         Game g = new Game();

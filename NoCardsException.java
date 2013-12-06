@@ -6,7 +6,7 @@
 
 package CS110FinalProject;
 
-class NoCardsException extends java.lang.RuntimeException
+public class NoCardsException extends java.lang.RuntimeException
 {
     public NoCardsException(String message)
     {

@@ -3,7 +3,7 @@ package CS110FinalProject;
 /**
  * Represents a hand.
  */
-class Hand extends CardCollection
+public class Hand extends CardCollection
 {
     /**
      * Default constructor.
